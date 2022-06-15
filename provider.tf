@@ -1,4 +1,5 @@
 provider "aws" {
   region = "us-east-1"
-  profile = "customer-empathy"
+  # Add your credentials here
+  # profile = "customer-empathy"
 }

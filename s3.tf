@@ -10,7 +10,7 @@ resource "aws_kms_alias" "key-alias" {
 }
 
 resource "aws_s3_bucket" "state-store" {
-  bucket = "my-tf-slug-bucket"
+  bucket = "ce-session-tfstate-bucket"
 }
 
 resource "aws_s3_bucket_server_side_encryption_configuration" "example" {
