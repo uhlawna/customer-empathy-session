@@ -28,7 +28,7 @@ In `provider.tf`, modify the provider block to reference your Doormat credential
 
 ```hcl
 provider "aws" {
-  region = "us-west-2"
+  region = "us-east-1"
   # Add your credentials here
   access_key = "<YOUR-DOORMAT-ACCESS-KEY>"
   secret_key = "<YOUR-DOORMAT-SECRET-KEY"
@@ -47,5 +47,8 @@ provider "aws" {
 
 5. This may take a while, so sit back and relax! 
 
-6. Once the changes have been successfully applied, you are ready to begin the customer empathy session exercise! 
+6. Once the changes have been applied we'll have our statefile stored locally. You might have noticed the backend configuration is commented out in `main.tf`. In order to migrate our statefile to an S3 bucket we'll need to uncomment that block. 
 
+7. Run `terraform init` again, this time Terraform will notice that there's been a change in the backend configuration from `local` to `S3`. Enter `yes` when asked if Terraform should perform a state migration.
+
+8. Once completed you have now migrated your Terraform statefile to S3 and you are ready to begin the customer empathy session exercise.
