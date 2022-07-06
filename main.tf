@@ -1,6 +1,6 @@
 terraform {
   # backend "s3" {
-  #   bucket = "ce-session-tfstate-bucket"
+  #   bucket = "ce-session-tfstate-bucket-{RANDOM_NUMBER_HERE}"
   #   key = "state/terraform.tfstate"
   #   region = "us-east-1"
   #   encrypt = true

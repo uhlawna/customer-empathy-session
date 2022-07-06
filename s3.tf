@@ -10,7 +10,7 @@ resource "aws_kms_alias" "key-alias" {
 }
 
 resource "aws_s3_bucket" "state-store" {
-  bucket = "ce-session-tfstate-bucket"
+  bucket = "ce-session-tfstate-bucket-${random_integer.bucket_suffix.id}"
 }
 
 resource "aws_s3_bucket_server_side_encryption_configuration" "example" {
@@ -53,6 +53,11 @@ resource "aws_dynamodb_table" "terraform-state" {
     name = "LockID"
     type = "S"
   }
+}
+
+resource "random_integer" "bucket_suffix" {
+  min = 1
+  max = 10000
 }
 
 

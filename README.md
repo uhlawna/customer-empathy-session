@@ -9,7 +9,7 @@ These configuration files produce the base starting point of our (INSERT FAKE CO
 - An S3 Bucket to store our Terraform statefile.
 - A DynamoDB table to manage our Terraform state locking.
 - A simple VPC 
-- A NAT Gateway
+- Two NAT Gateways
 - Two EC2 instances in that VPC that will serve as our example database and web application servers.
 
 ## Setup
@@ -47,7 +47,14 @@ provider "aws" {
 
 5. This may take a while, so sit back and relax! 
 
-6. Once the changes have been applied we'll have our statefile stored locally. You might have noticed the backend configuration is commented out in `main.tf`. In order to migrate our statefile to an S3 bucket we'll need to uncomment that block. 
+6. Once the changes have been applied we'll have our statefile stored locally. You'll notice there is an output in the form:
+```
+Outputs:
+
+bucket_name = "ce-session-tfstate-bucket-7289"
+```
+
+Well use this value to specify our bucket in the S3 backend configuration. You might have noticed the backend configuration is commented out in `main.tf`. In order to migrate our statefile to an S3 bucket we'll need to uncomment that block and replace `{RANDOM_NUMBER_HERE}` with the integer value of the output. 
 
 7. Run `terraform init` again, this time Terraform will notice that there's been a change in the backend configuration from `local` to `S3`. Enter `yes` when asked if Terraform should perform a state migration.
 
